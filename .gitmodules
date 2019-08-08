@@ -1,0 +1,3 @@
+[submodule "libGeminiDrivers"]
+	path = libGeminiDrivers
+	url = git@github.com:gemini-dakota/libGeminiDrivers.git
