@@ -28,5 +28,5 @@ Hopefully, it should be as simple as:
 ## Code Documentation
 I tried hard to make the code self documenting.
  - See [main.cpp](./demoHumidityDriver/src/main.cpp) for example driver usage.
- - See [Hts221.h](./libGeminiDrivers/libHumidity/include/Hts221.h) header file for driver implementation details. All functions are fully Doxygen commented
+ - See [Hts221.h](https://github.com/gemini-dakota/libGeminiDrivers/blob/master/libHumidity/include/Hts221.h) header file for driver implementation details. All functions are fully Doxygen commented
 
