@@ -2,6 +2,7 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
+#include <string>
 
 #include "I2cDriver.h"
 #include "I2cAdapter.h"
@@ -30,6 +31,7 @@ int main(int argc, char **argv)
         printf("hts221 failed to initialize\n");
         return 1;
     }
+    printf("date, temp(C), temp(f), humidity(%%)\n");
 
     while(1)
     {
@@ -44,13 +46,17 @@ int main(int argc, char **argv)
         {
             printf("Error - Failed to read humidity registers\n");
         }
-
-        //Print Values in CSV format
-        printf("temp(C), %f, temp(f), %f, humidity(%%), %f, ", tempDegC, tempDegC*9/5+32, humdPcnt);
-
         //Add Date to print
         auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-          std::cout << "date, " << std::ctime(&time) << std::endl;
+
+        //Remove pesky newline at end of ctime value for output purposes
+        std::string timeString(ctime(&time));
+        timeString = timeString.substr(0, timeString.length()-1);
+
+        //Print Values in CSV format
+        printf("%s,%f,%f,%f\n", timeString.c_str(), tempDegC, tempDegC*9/5+32, humdPcnt);
+        fflush(stdout);
+
 
         std::this_thread::sleep_for(std::chrono::seconds(3));
     }
